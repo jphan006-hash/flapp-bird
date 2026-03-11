@@ -1,0 +1,16 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #87CEEB; /* Sky blue background */
+}
+
+#board {
+    background-color: white;
+    border: 2px solid black;
+}
+
+/* Add more styles for the bird and pipes as you add them in JavaScript */
