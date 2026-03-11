@@ -1,16 +1,33 @@
 body {
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #87CEEB; /* Sky blue background */
+    /* Temporary background color for the sky */
+    background-color: #87CEEB; 
+    overflow: hidden; /* Hide scrollbars */
 }
 
-#board {
-    background-color: white;
-    border: 2px solid black;
+#game-container {
+    position: relative;
+    width: 400px; /* Game width */
+    height: 600px; /* Game height */
+    margin: 0 auto; /* Center the game container */
+    background-color: #FFFFFF; /* Fallback background */
+    overflow: hidden;
+    border: 1px solid black;
 }
 
-/* Add more styles for the bird and pipes as you add them in JavaScript */
+#bird {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-color: #FF5733; /* A reddish/orange color for the bird */
+    top: 250px; /* Initial vertical position */
+    left: 50px; /* Horizontal position */
+    border-radius: 50%; /* Makes the bird a circle */
+}
+
+/* Basic styling for pipes (more styling and positioning via JS) */
+.pipe {
+    position: absolute;
+    width: 60px;
+    background-color: #00FF00; /* Green color for pipes */
