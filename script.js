@@ -13,3 +13,6 @@ window.addEventListener('keydown', () => {
 });
 
 gameLoop();
+const bird = new Image();
+bird.src = "assets/your-custom-bird.png"; // Make sure the path is correct
+// Then, use context.drawImage(bird, ...) in your game loop
