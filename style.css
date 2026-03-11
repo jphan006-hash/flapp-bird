@@ -17,10 +17,39 @@
 .bird {
   height: 40px;
   width: 40px;
-  background-color: #FF5733; /* Change to a different color */
-  border-radius: 50%; /* Makes it a circle */
-  /* Or use a background image */
-  /* background-image: url('assets/your-custom-bird.png'); */
+  background-color: #FF5733; 
+  border-radius: 50%; 
+    canvas {
+    border: 5px solid #ff69b4; /* Pink border */
+    display: block;
+    margin: 0 auto;
+    /* Add a magical background image */
+    background-image: url('17128499-frog-5319326.png');
+    background-size: cover;
+}
+  let board;
+let boardWidth = 400;
+let boardHeight = 600;
+let context;
+
+// Background image variable
+let backgroundImg;
+
+window.onload = function() {
+    board = document.getElementById("board");
+    board.height = boardHeight;
+    board.width = boardWidth;
+    context = board.getContext("2d"); // Used for drawing on the canvas
+
+    // Load the background image
+    backgroundImg = new Image(17128499-frog-5319326.jpg);
+    backgroundImg.src = "./.png"; // Replace with the path to your background image file
+
+    // Ensure the image is loaded before attempting to draw
+    backgroundImg.onload = function() {
+        // Start the game loop after the image is loaded
+        requestAnimationFrame(update);
+    }
 }
 
 
