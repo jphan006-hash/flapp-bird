@@ -1,33 +1,55 @@
-body {
-    margin: 0;
-    padding: 0;
-    /* Temporary background color for the sky */
-    background-color: #87CEEB; 
-    overflow: hidden; /* Hide scrollbars */
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flappy Bird</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #87CEEB; /* Sky color */
+            overflow: hidden; /* Hide scrollbars */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Center vertically */
+        }
 
-#game-container {
-    position: relative;
-    width: 400px; /* Game width */
-    height: 600px; /* Game height */
-    margin: 0 auto; /* Center the game container */
-    background-color: #FFFFFF; /* Fallback background */
-    overflow: hidden;
-    border: 1px solid black;
-}
+        #game-container {
+            position: relative;
+            width: 400px; /* Game width */
+            height: 600px; /* Game height */
+            background-color: #FFFFFF; /* Ground/Fallback */
+            overflow: hidden;
+            border: 2px solid #333;
+        }
 
-#bird {
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    background-color: #FF5733; /* A reddish/orange color for the bird */
-    top: 250px; /* Initial vertical position */
-    left: 50px; /* Horizontal position */
-    border-radius: 50%; /* Makes the bird a circle */
-}
+        #bird {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background-color: #FF5733; /* Bird color */
+            top: 250px; /* Initial position */
+            left: 50px;
+            border-radius: 50%;
+            z-index: 10; /* Ensure bird is above pipes */
+        }
 
-/* Basic styling for pipes (more styling and positioning via JS) */
-.pipe {
-    position: absolute;
-    width: 60px;
-    background-color: #00FF00; /* Green color for pipes */
+        .pipe {
+            position: absolute;
+            width: 60px;
+            background-color: #00FF00; /* Pipe color */
+            /* Height will be handled by JavaScript */
+        }
+    </style>
+</head>
+<body>
+
+    <div id="game-container">
+        <div id="bird"></div>
+        <!-- Pipes will be added here via JS -->
+    </div>
+
+</body>
+</html>
