@@ -1,56 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flappy Bird</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #87CEEB; /* Sky color */
-            overflow: hidden; /* Hide scrollbars */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh; /* Center vertically */
-        }
+#game-container {
+    width: 400px;
+    height: 600px;
+    border: 2px solid #000;
+    position: relative;
+    overflow: hidden;
+    background-color: skyblue;
+}
 
-        #game-container {
-            position: relative;
-            width: 400px; /* Game width */
-            height: 600px; /* Game height */
-            background-color: #FFFFFF; /* Ground/Fallback */
-            overflow: hidden;
-            border: 2px solid #333;
-        }
+#bird {
+    width: 40px;
+    height: 30px;
+    background-color: yellow;
+    position: absolute;
+    top: 50%;
+    left: 50px;}
 
-        #bird {
-            position: absolute;
-            width: 40px;
-            height: 40px;
-            background-color: #FF5733; /* Bird color */
-            top: 250px; /* Initial position */
-            left: 50px;
-            border-radius: 50%;
-            z-index: 10; /* Ensure bird is above pipes */
-            <img src="assets/custom-avatar.png" alt="custom avatar" id="bird1" class="bird">
-        }
 
-        .pipe {
-            position: absolute;
-            width: 60px;
-            background-color: #00FF00; /* Pipe color */
-            /* Height will be handled by JavaScript */
-        }
-    </style>
-</head>
-<body>
 
-    <div id="game-container">
-        <div id="bird"></div>
-        <!-- Pipes will be added here via JS -->
-    </div>
-
-</body>
-</html>
