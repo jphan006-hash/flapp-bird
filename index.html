@@ -1,90 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flappy Bird</title>
+    <title>Flappy Bird Clone</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <canvas id="board"></canvas>
-    <script>
-
-// Get the canvas element and its context
-const canvas = document.getElementById('board');
-const ctx = canvas.getContext('2d');
-
-// Set canvas size (adjust as needed)
-canvas.width = 400;
-canvas.height = 600;
-
-// Game variables
-let birdY = 250;
-let gravity = 0.5;
-let velocity = 0;
-const jump = -11.5; // Upward velocity on jump
-
-// Load images and audio (You'll need actual files for this)
-const birdImg = new Image();
-birdImg.src = "images/bird.png"; // Replace with your image path
-
-// Game loop (main animation function)
-function gameLoop() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear canvas
-
-    // Bird physics
-    velocity += gravity;
-    birdY += velocity;
-
-    // Draw bird (use an image or a simple rectangle)
-    // ctx.drawImage(birdImg, 50, birdY, 40, 30);
-    ctx.fillStyle = "#FF5733"; // Fallback color
-    ctx.fillRect(50, birdY, 40, 30);
-
-    // Basic ground collision (game over condition)
-    if (birdY > canvas.height || birdY < 0) {
-        // Handle game over logic here
-        console.log("Game Over");
-    }
-
-    requestAnimationFrame(gameLoop); // Loop the game
-}
-
-// Handle user input (jump)
-document.addEventListener('keydown', (e) => {
-    if (e.code === 'Space') { // Use the space bar for jumping
-        velocity = jump;
-    }
-});
-
-// Start the game loop
-gameLoop();
- <h1>Welcome</h1>
-  <!-- Unicode Bird -->
-  <span class="bird">&#128038;</span>
-
-<style>
-  /* Theme: Sky Blue */
-  body {
-    background-color: #87CEEB;
-    font-family: Arial, sans-serif;
-  }
-  /* Bird Styling */
-  .bird { unicode Bird
-    font-size: 50px;
-    position: absolute;
-    top: 50px;
-    left: 50px;
-  }
-</style>
-</head>
-<body>
-  <h1>Welcome</h1>
-  <!-- Unicode Bird -->
-  <span class="bird">&#128038;</span>
-
-
-
-</script>
+    <div id="game-container">
+        <div id="bird"></div>
+        <!-- Pipes will be added dynamically via JavaScript -->
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
