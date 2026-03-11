@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flappy Bird</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <canvas id="board"></canvas>
+    <script src="script.js">
+
+// Get the canvas element and its context
+const canvas = document.getElementById('board');
+const ctx = canvas.getContext('2d');
+
+// Set canvas size (adjust as needed)
+canvas.width = 400;
+canvas.height = 600;
+
+// Game variables
+let birdY = 250;
+let gravity = 0.5;
+let velocity = 0;
+const jump = -11.5; // Upward velocity on jump
+
+// Load images and audio (You'll need actual files for this)
+const birdImg = new Image();
+birdImg.src = "images/bird.png"; // Replace with your image path
+
+// Game loop (main animation function)
+function gameLoop() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear canvas
+
+    // Bird physics
+    velocity += gravity;
+    birdY += velocity;
+
+    // Draw bird (use an image or a simple rectangle)
+    // ctx.drawImage(birdImg, 50, birdY, 40, 30);
+    ctx.fillStyle = "#FF5733"; // Fallback color
+    ctx.fillRect(50, birdY, 40, 30);
+
+    // Basic ground collision (game over condition)
+    if (birdY > canvas.height || birdY < 0) {
+        // Handle game over logic here
+        console.log("Game Over");
+    }
+
+    requestAnimationFrame(gameLoop); // Loop the game
+}
+
+// Handle user input (jump)
+document.addEventListener('keydown', (e) => {
+    if (e.code === 'Space') { // Use the space bar for jumping
+        velocity = jump;
+    }
+});
+
+// Start the game loop
+gameLoop();
+
+
+
+
+
+</script>
+</body>
+</html>
