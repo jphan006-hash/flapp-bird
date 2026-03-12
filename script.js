@@ -84,7 +84,48 @@ public class BirdController : MonoBehaviour
         // To restart: SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
+using UnityEngine;
+using System.Collections.Generic;
 
+public class BirdSkinManager : MonoBehaviour
+{
+    [Header("Skin List")]
+    [SerializeField] private List<Sprite> birdSkins; // Drag your sprites here
+    private SpriteRenderer spriteRenderer;
+
+    private void Awake()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
+    private void Start()
+    {
+        // Set an initial skin at the start of the game
+        ChangeSkin();
+    }
+
+    // Call this function when the bird dies
+    public void ChangeSkin()
+    {
+        if (birdSkins.Count > 0)
+        {
+            // Pick a random index
+            int randomIndex = Random.Range(0, birdSkins.Count);
+            // Apply the sprite
+            spriteRenderer.sprite = birdSkins[randomIndex];
+        }
+    }
+
+    // Example Detection: Modify this to fit your existing death script
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Pipe") || collision.gameObject.CompareTag("Ground"))
+        {
+            // Bird died, let's change the skin for the next round
+            ChangeSkin();
+        }
+    }
+}
 .score {
   position: absolute;
   top: 10px;
