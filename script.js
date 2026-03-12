@@ -1,7 +1,12 @@
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 
-// Bird character properties
+<body>
+    <canvas id="gameCanvas" width="320" height="480"></canvas>
+    <script>
+        
+    
+
 const bird = {
     x: 50,
     y: 150,
@@ -44,6 +49,7 @@ function gameLoop() {
 window.addEventListener('keydown', () => {
     bird.velocity = bird.jump;
 });
-
+</body>
+</script>
 // Start the game
 gameLoop();
