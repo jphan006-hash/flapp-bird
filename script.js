@@ -1,4 +1,3 @@
-// game.js
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 
@@ -11,71 +10,14 @@ const bird = {
     gravity: 0.6,
     velocity: 0,
     jump: -8
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+};
+
+// Function to draw the bird
+function drawBird() {
+    ctx.fillStyle = '#FF5733';
+    ctx.fillRect(bird.x, bird.y, bird.width, bird.height);
 }
 
-body {
-  /* Center the game on the screen */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background-color: #333; /* Dark background for the rest of the page */
-  overflow: hidden; /* Hide scrollbars */
-}
-
-#game-container {
-  position: relative;
-  width: 400px;
-  height: 600px;
-  background-color: #87CEEB; 
-  border-radius: 10px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  overflow: hidden; 
-}
-
-#bird {
-  
-  position: absolute; 
-  width: 40px;
-  height: 40px;
-  background-color: #FF5733; 
-  border-radius: 50%; 
-
-}
-
-.pipe {
-  
-  position: absolute;
-  width: 60px;
-  background-color: #00FF00; 
-  outline: none;
-}
-
-
-@keyframes pipeMovement {
-  from { left: 100%; }
-  to { left: -60px; } 
-}
-
-.pipe.animated {
-  animation: pipeMovement 3s linear infinite; /* Apply animation */
-}
-
-.score {
-  
-  position: absolute;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
-  font-size: 40px;
-  color: white;
-  text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, -2px 2px 0 #000, 2px -2px 0 #000;
-}
 // Game Loop
 function gameLoop() {
     // Clear canvas
@@ -85,9 +27,16 @@ function gameLoop() {
     bird.velocity += bird.gravity;
     bird.y += bird.velocity;
 
+    // Optional: Keep bird within canvas bounds (simple collision)
+    if (bird.y > canvas.height - bird.height || bird.y < 0) {
+        bird.y = Math.max(0, Math.min(canvas.height - bird.height, bird.y));
+        bird.velocity = 0; // Stop movement if it hits the floor/ceiling
+    }
+
     // Draw bird
     drawBird();
 
+    // Call the game loop again
     requestAnimationFrame(gameLoop);
 }
 
@@ -96,4 +45,5 @@ window.addEventListener('keydown', () => {
     bird.velocity = bird.jump;
 });
 
+// Start the game
 gameLoop();
