@@ -11,40 +11,71 @@ const bird = {
     gravity: 0.6,
     velocity: 0,
     jump: -8
-};
-
-// Load bird image (or draw a simple square if you don't have an image)
-const birdImg = new Image();
-// Replace with your actual image path
-// --- 1. Load Assets ---
-const unicornImg = new Image();
-unicornImg.src = 'unicorn.png'; // Make sure this path is correct
-
-// --- 2. Update Player Class/Object ---
-// In your update/draw function where you draw the bird:
-function drawBird() {
-    // OLD: ctx.fillStyle = 'yellow'; ctx.arc(...)
-    
-    // NEW: Draw the unicorn image
-    ctx.drawImage(unicornImg, bird.x, bird.y, bird.width, bird.height);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-// --- 3. Change Background Theme ---
-function drawBackground() {
-    // Example: A magical purple sky
-    ctx.fillStyle = "#8a2be2"; 
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+body {
+  /* Center the game on the screen */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #333; /* Dark background for the rest of the page */
+  overflow: hidden; /* Hide scrollbars */
 }
 
-function drawBird() {
-    // If you have an image:
-    // ctx.drawImage(birdImg, bird.x, bird.y, bird.width, bird.height);
-    
-    // Fallback: Simple yellow square bird
-    ctx.fillStyle = '#FFD700';
-    ctx.fillRect(bird.x, bird.y, bird.width, bird.height);
+#game-container {
+  position: relative;
+  width: 400px;
+  height: 600px;
+  background-color: #87CEEB; 
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  overflow: hidden; 
 }
 
+#bird {
+  
+  position: absolute; 
+  width: 40px;
+  height: 40px;
+  background-color: #FF5733; 
+  border-radius: 50%; 
+
+}
+
+.pipe {
+  
+  position: absolute;
+  width: 60px;
+  background-color: #00FF00; 
+  outline: none;
+}
+
+
+@keyframes pipeMovement {
+  from { left: 100%; }
+  to { left: -60px; } 
+}
+
+.pipe.animated {
+  animation: pipeMovement 3s linear infinite; /* Apply animation */
+}
+
+.score {
+  
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  font-size: 40px;
+  color: white;
+  text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, -2px 2px 0 #000, 2px -2px 0 #000;
+}
 // Game Loop
 function gameLoop() {
     // Clear canvas
