@@ -1,55 +1,99 @@
+// game.js
+const canvas = document.getElementById('gameCanvas');
+const ctx = canvas.getContext('2d');
+
+// Bird character properties
+const bird = {
+    x: 50,
+    y: 150,
+    width: 30,
+    height: 30,
+    gravity: 0.6,
+    velocity: 0,
+    jump: -8
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  /* Center the game on the screen */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #333; /* Dark background for the rest of the page */
+  overflow: hidden; /* Hide scrollbars */
+}
+
 #game-container {
-    width: 400px;
-    height: 600px;
-    border: 2px solid #000;
-    position: relative;
-    overflow: hidden;
-    background-color: skyblue;
+  position: relative;
+  width: 400px;
+  height: 600px;
+  background-color: #87CEEB; 
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  overflow: hidden; 
 }
 
 #bird {
-    width: 40px;
-    height: 30px;
-    background-color: yellow;
-    position: absolute;
-    top: 50%;
-    left: 50px;}
-.bird {
-  height: 40px;
+  
+  position: absolute; 
   width: 40px;
+  height: 40px;
   background-color: #FF5733; 
   border-radius: 50%; 
-    canvas {
-    border: 5px solid #ff69b4; /* Pink border */
-    display: block;
-    margin: 0 auto;
-    /* Add a magical background image */
-    background-image: url('17128499-frog-5319326.png');
-    background-size: cover;
+
 }
-  let board;
-let boardWidth = 400;
-let boardHeight = 600;
-let context;
 
-// Background image variable
-let backgroundImg;
-
-window.onload = function() {
-    board = document.getElementById("board");
-    board.height = boardHeight;
-    board.width = boardWidth;
-    context = board.getContext("2d"); // Used for drawing on the canvas
-
-    // Load the background image
-    backgroundImg = new Image(17128499-frog-5319326.jpg);
-    backgroundImg.src = "./.png"; // Replace with the path to your background image file
-
-    // Ensure the image is loaded before attempting to draw
-    backgroundImg.onload = function() {
-        // Start the game loop after the image is loaded
-        requestAnimationFrame(update);
-    }
+.pipe {
+  
+  position: absolute;
+  width: 60px;
+  background-color: #00FF00; 
+  outline: none;
 }
 
 
+@keyframes pipeMovement {
+  from { left: 100%; }
+  to { left: -60px; } 
+}
+
+.pipe.animated {
+  animation: pipeMovement 3s linear infinite; /* Apply animation */
+}
+
+.score {
+  
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  font-size: 40px;
+  color: white;
+  text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, -2px 2px 0 #000, 2px -2px 0 #000;
+}
+// Game Loop
+function gameLoop() {
+    // Clear canvas
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Apply gravity
+    bird.velocity += bird.gravity;
+    bird.y += bird.velocity;
+
+    // Draw bird
+    drawBird();
+
+    requestAnimationFrame(gameLoop);
+}
+
+// Controls
+window.addEventListener('keydown', () => {
+    bird.velocity = bird.jump;
+});
+
+gameLoop();
