@@ -1,17 +1,4 @@
-// game.js
-const canvas = document.getElementById('gameCanvas');
-const ctx = canvas.getContext('2d');
-
-// Bird character properties
-const bird = {
-    x: 50,
-    y: 150,
-    width: 30,
-    height: 30,
-    gravity: 0.6,
-    velocity: 0,
-    jump: -8
-* {
+ {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -38,35 +25,23 @@ body {
 }
 
 #bird {
-  
   position: absolute; 
   width: 40px;
   height: 40px;
   background-color: #FF5733; 
   border-radius: 50%; 
-
+  /* Add a transition for smooth movement */
+  transition: top 0.05s linear; 
 }
 
 .pipe {
-  
   position: absolute;
   width: 60px;
   background-color: #00FF00; 
-  outline: none;
 }
 
-
-@keyframes pipeMovement {
-  from { left: 100%; }
-  to { left: -60px; } 
-}
-
-.pipe.animated {
-  animation: pipeMovement 3s linear infinite; /* Apply animation */
-}
 
 .score {
-  
   position: absolute;
   top: 10px;
   left: 50%;
@@ -76,24 +51,3 @@ body {
   color: white;
   text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, -2px 2px 0 #000, 2px -2px 0 #000;
 }
-// Game Loop
-function gameLoop() {
-    // Clear canvas
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // Apply gravity
-    bird.velocity += bird.gravity;
-    bird.y += bird.velocity;
-
-    // Draw bird
-    drawBird();
-
-    requestAnimationFrame(gameLoop);
-}
-
-// Controls
-window.addEventListener('keydown', () => {
-    bird.velocity = bird.jump;
-});
-
-gameLoop();
